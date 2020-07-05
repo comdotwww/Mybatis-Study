@@ -4,9 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 
 <!--namespace 绑定一个对应的Dao/mapper接口-->
-<mapper namespace="com.xmj.dao.UserDao">
-    <!--查询语句 id为方法名-->
-    <select id="getUserList" resultType="com.xmj.pojo.User">
-        select * from mybatis.user
+<mapper namespace="com.xmj.dao.UserMapper">
+
+    <!--查询语句 id：对应namespace中的方法名    resultType：SQL语句执行的返回值类型    parameterType：参数类型-->
+    <select id="getUserList" resultType="com.xmj.pojo.User" >
+        select * from mybatis.user ;
     </select>
+
+    <!--根据ID查询用户-->
+    <select id="getUserById" parameterType="int" resultType="com.xmj.pojo.User">
+        select * from mybatis.user where id=#{id};
+    </select>
+
+    <!--添加用户-->
+    <insert id="addUser" parameterType="com.xmj.pojo.User">
+        insert into mybatis.user (id, name, pwd ) values (#{id}, #{name}, #{pwd});
+    </insert>
+
+    <!--修改用户-->
+    <update id="updateUser" parameterType="com.xmj.pojo.User">
+        update mybatis.user set name=#{name}, pwd = #{pwd} where id = #{id};
+    </update>
+
+    <!--删除用户-->
+    <delete id="deleteUser" parameterType="int">
+        delete from mybatis.user where id=#{id};
+    </delete>
 </mapper>
