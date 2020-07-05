@@ -7,7 +7,7 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://192.168.0.140:3306/</jdbc-url>
       <driver-properties>
-        <property name="serverTimezone" value="UTC" />
+        <property name="serverTimezone" value="UTC+08:00" />
       </driver-properties>
     </data-source>
   </component>
