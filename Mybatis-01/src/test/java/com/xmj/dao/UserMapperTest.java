@@ -5,7 +5,9 @@ import com.xmj.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserMapperTest {
 
@@ -71,6 +73,47 @@ public class UserMapperTest {
 
         //提交事务
         sqlSession.commit();
+
+        sqlSession.close();
+    }
+
+
+    //增删改需要提交事务
+    @Test
+    public void addUser2Test(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userId",5);
+        map.put("userName","张晓蓝");
+        map.put("userPassword","123qaq123");
+
+
+        int i = mapper.addUser2(map);
+
+        System.out.println("插入结果为：" + i);
+
+        //提交事务
+        sqlSession.commit();
+
+        sqlSession.close();
+    }
+
+    @Test
+    public void getUserByIdTest2(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userId",5);
+        map.put("userName","张晓蓝");
+        map.put("userPassword","123qaq123");
+        User userById = mapper.getUserById2(map);
+
+        System.out.println(userById);
 
         sqlSession.close();
     }

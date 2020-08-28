@@ -25,10 +25,6 @@ public interface UserMapper {
      */
     User getUserById(int id);
 
-    //万能的map
-    int addUser2(Map<String, Object> map);
-    User getUserById2(Map<String, Object> map);
-
     /**
      * 添加用户
      *

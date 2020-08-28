@@ -7,35 +7,27 @@
 <mapper namespace="com.xmj.dao.UserMapper">
 
     <!--查询语句 id：对应namespace中的方法名    resultType：SQL语句执行的返回值类型    parameterType：参数类型-->
-    <select id="getUserList" resultType="com.xmj.pojo.User" >
+    <select id="getUserList" resultType="user" >
         select * from mybatis.user ;
     </select>
 
     <!--根据ID查询用户-->
-    <select id="getUserById" parameterType="int" resultType="com.xmj.pojo.User">
+    <select id="getUserById" parameterType="int" resultType="user">
         select * from mybatis.user where id=#{id};
     </select>
 
-    <!--添加用户2-->
-    <!--传递map的key-->
-    <insert id="addUser2" parameterType="map">
-        insert into mybatis.user (id, name, pwd ) values (#{userId}, #{userName}, #{userPassword});
-    </insert>
-
-    <!--根据ID查询用户-->
-    <select id="getUserById2" parameterType="map" resultType="com.xmj.pojo.User">
-        select * from mybatis.user where id=#{userId} and name=#{userName};
+    <!--模糊查询-->
+    <select id="getUserLike" resultType="user">
+        select * from mybatis.user where name like "%"#{value}"%";
     </select>
 
-    
-    
     <!--添加用户-->
-    <insert id="addUser" parameterType="com.xmj.pojo.User">
+    <insert id="addUser" parameterType="user">
         insert into mybatis.user (id, name, pwd ) values (#{id}, #{name}, #{pwd});
     </insert>
 
     <!--修改用户-->
-    <update id="updateUser" parameterType="com.xmj.pojo.User">
+    <update id="updateUser" parameterType="user">
         update mybatis.user set name=#{name}, pwd = #{pwd} where id = #{id};
     </update>
 
